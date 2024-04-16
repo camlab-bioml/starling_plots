@@ -1,0 +1,25 @@
+thetas = expand('/home/campbell/yulee/project/st/{cohort}/analysis/_3runAllCells/{seg_type}/the1_st{seg_type}_cf{cofactor}_nm{noise_model}_sp{singlet_prop}_lv{lambda_val}_cs{cell_size}_rr{relax_rule}_r{repetition}', 
+  cohort = 'tonsil',
+  seg_type = 'dc',
+  cofactor = 5,
+  noise_model = 2,
+  singlet_prop = 0.6,
+  lambda_val = 1,
+  cell_size = 1,
+  relax_rule = 1,
+  repetition = range(10))
+
+rule all:
+  input:
+    thetas
+rule experiment:
+  output:
+    theta1 = '/home/campbell/yulee/project/st/{cohort}/analysis/_3runAllCells/{seg_type}/the1_st{seg_type}_cf{cofactor}_nm{noise_model}_sp{singlet_prop}_lv{lambda_val}_cs{cell_size}_rr{relax_rule}_r{repetition}',
+  shell:
+    "/usr/bin/python3 /home/campbell/yulee/project/st/_6runAllCells2.py "
+    "--cohort {wildcards.cohort} --seg_type {wildcards.seg_type} "
+    "--cofactor {wildcards.cofactor} --noise_model {wildcards.noise_model} --singlet_prop {wildcards.singlet_prop} "
+    "--lambda_val {wildcards.lambda_val} --cell_size {wildcards.cell_size} --relax_rule {wildcards.relax_rule} "
+    "--repetition {wildcards.repetition} --output_theta1 {output.theta1}"
+
+    ##https://github.com/pytorch/pytorch/issues/67864

@@ -1,0 +1,19 @@
+COHORT = 'meta'
+fns = expand('/home/campbell/yulee/project/st/{cohort}/mat/{seg_type}/{sample_id}.npy', 
+    cohort = COHORT,
+    seg_type = 'dc',
+    sample_id = range(548)) #range(samples.shape[0])
+
+rule all:
+  input: fns
+rule experiment:
+  output: 
+    out = '/home/campbell/yulee/project/st/{cohort}/mat/{seg_type}/{sample_id}.npy',
+  shell:
+    "python3 ~/project/st/_2compute_expressions.py --cohort {wildcards.cohort} "
+    "--seg_type {wildcards.seg_type} --sample_id {wildcards.sample_id} --output_fn {output.out}"
+    ##https://github.com/pytorch/pytorch/issues/67864
+
+## tonsil: 0-19
+## basel: 0-357
+## meta: 0-547
