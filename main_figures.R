@@ -20,8 +20,11 @@ library(ComplexHeatmap)
 library(reticulate)
 np <- import("numpy")
 
-##fig 2b
+###
+###
 
+
+##fig 2b
 neighborhood_analysis <- function(cohort) {
   
   path = paste0("/2processed_files/" + cohort)
@@ -216,7 +219,7 @@ ggsave("fig2c.pdf", height = 7 * (2/3), width = 7)
 ####
 
 
-##fig3a (use the benchmark results from 2c analysis)
+##fig 3a (use the benchmark results from 2c analysis)
 res <- rbind(cbind(cohort='basel', bdc[[2]]), 
              cbind(cohort='meta', mdc[[2]]), 
              cbind(cohort='tonsil', tdc[[2]]))
@@ -258,7 +261,7 @@ ggsave("fig3a.pdf", width = 3.5, height = 7 * (2/3))
 ####
 
 
-## fig3c
+## fig 3c
 res <- rbind(
   cbind(cohort='basel', MESMER='Yes', bdc[[1]]),
   cbind(cohort='meta', MESMER='Yes', mdc[[1]]),
@@ -294,7 +297,7 @@ df %>%
 ggsave("fig3c.pdf", width = 3.5, height = 7 * (2/3))
 
 
-## fig3b
+## fig 3b
 rm(list=ls())
 mdf <- read_csv("metabrics_gamma.csv")
 bdf <- read_csv("basel_gamma.csv")
@@ -339,7 +342,7 @@ ggsave("fig3b.pdf", width = 3.5, height = 7 * (2/3))
 ###
 
 
-## fig5c/supplementary 16
+## fig 5c/supplementary 16
 minmax <- function(x, na.rm = TRUE) {
   return((x- min(x, na.rm = TRUE)) /(max(x, na.rm = TRUE)-min(x, na.rm = TRUE)))
 }
@@ -447,7 +450,8 @@ dev.off()
 ###
 ###
 
-##fig5de
+
+##fig 5de
 rm(list=ls())
 col_fun <- colorRamp2(c(0, 1), c("white", "blue"))
 lgd <-  Legend(col_fun = col_fun, title = "Proportion", labels_gp = gpar(fontsize = 8))
@@ -584,9 +588,7 @@ dev.off()
 ###
 
 
-##fig6ab
-
-
+##fig 6ab
 rm(list=ls())
 p <- c(1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3)
 nhood_zsd12 <- NULL
